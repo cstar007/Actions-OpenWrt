@@ -9,14 +9,14 @@
 name: Build OpenWrt
 
 on:
-  push:
-    branches: 
-      - master
-  # schedule:
-  #   - cron: 0 20 * * *
+   schedule:
+    - cron: 0 7 * * 5
+  # push:
+    # branches: 
+      # - master 
   # release:
   #   types: [published] 
-  watch:
+   watch:
     types: started
 
 env:
@@ -24,7 +24,7 @@ env:
   REPO_BRANCH: master
   CONFIG_FILE: .config
   DIY_SH: diy.sh
-  SSH_ACTIONS: true
+  SSH_ACTIONS: false
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   TZ: Asia/Shanghai
@@ -53,17 +53,17 @@ jobs:
     - name: 复制最新源码
       run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
       
-    - name: 增加passwall
+    - name: 下载lienol源码
       run: |
           cd openwrt
           cd package
           git clone https://github.com/Lienol/openwrt-package.git
     
     
-    - name: Update feeds
+    - name: 更新软件列表
       run: cd openwrt && ./scripts/feeds update -a
 
-    - name: Install feeds
+    - name: 安装软件列表
       run: cd openwrt && ./scripts/feeds install -a
 
     - name: 加载设置文件
