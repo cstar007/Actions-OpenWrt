@@ -10,7 +10,7 @@ name: 云编译固件
 
 on:
    schedule:
-    - cron: 0 7 * * 5
+    - cron: 0 6 * * 5
   # push:
     # branches: 
       # - master 
