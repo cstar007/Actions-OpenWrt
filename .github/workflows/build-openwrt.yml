@@ -24,7 +24,7 @@ env:
   REPO_BRANCH: master
   CONFIG_FILE: .config
   DIY_SH: diy.sh
-  SSH_ACTIONS: false
+  SSH_ACTIONS: true
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   TZ: Asia/Shanghai
@@ -58,6 +58,12 @@ jobs:
           cd openwrt
           cd package
           git clone https://github.com/Lienol/openwrt-package.git
+    - name: 下载hello world源码&依赖
+      run: |
+          cd openwrt
+          cd package
+          git clone git clone https://github.com/jerrykuku/lua-maxminddb.git
+          git clone https://github.com/jerrykuku/luci-app-vssr.git
     
     - name: 更新软件列表
       run: cd openwrt && ./scripts/feeds update -a
