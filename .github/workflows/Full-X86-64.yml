@@ -9,8 +9,8 @@
 name: 云编译固件-Full版
 
 on:
-  # schedule:
-     #- cron: 0 6 * * 5
+  schedule:
+   - cron: 0 8 * * 5
   # push:
     # branches: 
       # - master 
